@@ -1,0 +1,29 @@
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Arrays1 {
+    public static void main(String[] args) {
+            int[] arr = {10 , 2, -2, -20, 10};
+            int answer = subArraysHavingSumK(arr, -10);
+            System.out.println(answer);
+
+        }
+
+        private static int subArraysHavingSumK (int @NotNull [] A, int target){
+            int answer = 0;
+            int sum = 0;
+            Map<Integer, Integer> map = new HashMap<>();
+            map.put(0,1);
+            for(int i:A){
+                sum+=i;
+                int remSum = sum-target;
+                if(map.containsKey(remSum)){
+                    answer+=map.get(remSum);
+                }
+                map.put(sum, map.getOrDefault(sum,0)+1);
+            }
+            return answer;
+        }
+    }
