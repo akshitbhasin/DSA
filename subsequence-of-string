@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		String str = "ABCD";
+		ArrayList<String> result = subsequence(str);
+		System.out.println(result);
+		
+	}
+	public static ArrayList<String> subsequence(String str){
+	    
+	    if(str.length()==0){
+	        ArrayList<String> s = new ArrayList<String>();
+	        s.add("");
+	        return s;
+	    }
+	    char ch = str.charAt(0);
+	    ArrayList<String> rs = subsequence(str.substring(1));
+	    ArrayList<String> mainres = new ArrayList<String>();
+	    for(String i: rs){
+	        mainres.add("" + i);
+	        mainres.add(ch + i);
+	    }
+	    return mainres;
+	}
+	
+}
