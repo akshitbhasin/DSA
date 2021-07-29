@@ -1,0 +1,106 @@
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		printIncreasing(5);
+        System.out.println(fact(5));
+        System.out.println(power(5, 2));
+        ToH(3, 'A', 'B', 'C');
+        int [] arr = {1,2,4,1,4,5,7,4,7,7,9,4,3,6,5,9,3,8};
+        displayArray(arr, 0);
+        System.out.println(maxInArray(arr, 0));
+        System.out.println(firstIndexOfOccurence(arr, 0, 7));
+        System.out.println(lastIndexOfOccurence(arr, 0, 1));
+	}
+	public static void printIncreasing(int n){
+	    if(n<=0)
+	        return;
+	    
+	    System.out.println(n);
+	    printIncreasing(n-1);
+	    System.out.println(n);
+	    
+	    
+	    
+	}
+	public static int fact(int n){
+        if(n<=1)
+            return 1;
+        
+        int nm1fact = fact(n-1);
+        int nfact = n * nm1fact;
+        return nfact;
+	}
+	public static int power(int n, int x){
+	    if(x==0){
+	        return 1;
+	    }
+	    int xpnm1 = power(n, x-1);
+	    int xpn = n * xpnm1;
+	    return xpn;
+	}
+	public static void ToH(int disks, char A, char B, char C){
+	    if(disks == 0)
+	    return;
+	    
+	    ToH(disks-1, A, C, B);
+	    System.out.println("Put Disk " + (disks) + " From " + A + " To " + B );
+	    ToH(disks - 1, C, B, A);
+	    
+	}
+	public static void displayArray(int [] arr, int idx){
+	    
+	    if(idx>= arr.length)
+	        return;
+	    System.out.print(arr[idx]);
+	    displayArray(arr, idx+1);
+	    
+	    
+	}
+	public static int maxInArray(int [] arr, int idx){
+	    
+	    if(idx>=arr.length)
+	    return Integer.MIN_VALUE;
+	    
+	    int maxira = maxInArray(arr,  idx+1);
+	    int max = Math.max(arr[idx], maxira);
+	    return max;
+	}
+	public static int firstIndexOfOccurence(int []  arr, int idx, int x){
+	    if(idx>=arr.length){
+	        return -1;
+	    }
+	    if(arr[idx] == x)
+	        return idx;
+	    int foia = firstIndexOfOccurence(arr, idx+1, x);
+	    return foia;
+	    
+	}
+	
+	public static int lastIndexOfOccurence(int [] arr, int idx, int x){
+	    
+	    if(idx>=arr.length)
+	        return -1;
+	    int loia = lastIndexOfOccurence(arr, idx+1, x);
+	    if(loia == -1)
+	        if(arr[idx] == x)
+	            return idx;
+        return loia;	            
+	}
+	
+	public static int[] allIndices(int [] arr, int idx, int x, int fsf){
+	    
+	   if(idx>=arr.length)
+	   return new int[fsf];
+	   if(arr[idx]==x){
+	        int [] iarr = allIndices(arr, idx+1, x, fsf+1);
+	        iarr[fsf] = idx;
+	        return iarr;
+	   }
+	   else{
+	        int [] iarr = allIndices(arr, idx+1, x, fsf);
+	        return iarr;
+	   }
+	   
+	} 
+}
